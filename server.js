@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/weather', (req, res) => {
-    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=manama&appid=${process.env.OPEN_WEATHER_API_KEY}`).then((value) => {
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${req.query.lat}&lon=${req.query.lon}&appid=${process.env.OPEN_WEATHER_API_KEY}`).then((value) => {
         if(value.status === 200){
             res.json(value.data);
         }    
