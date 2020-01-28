@@ -58,7 +58,7 @@ class AppComponent extends React.Component<{}, IAppState> {
     }
 
     getWeather(lat: number, lon: number){
-        axios.default.get(`/api/weather?lat=${lat}&lon=${lon}`).then((value) => {
+        axios.default.get(`${location.href}api/weather?lat=${lat}&lon=${lon}`).then((value) => {
             console.log('weather data');
             console.log(value);
             this.setState({
