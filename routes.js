@@ -1,7 +1,10 @@
 let Router  = require('express').Router;
 let axios   = require('axios').default;
+let express = require('express');
 
 let routes =  Router();
+
+routes.use(express.static('dist'));
 
 routes.get('/', (req, res) => {
     res.sendFile('/dist/index.html');
