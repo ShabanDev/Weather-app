@@ -1,6 +1,10 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as axios from 'axios';
+import UnitToggleButton from './components/UnitToggleButton';
+
+
+import './main.styl';
 
 interface IAppState { 
     weatherData: { 
@@ -84,21 +88,45 @@ interface WeatherInfoProps {
     city: string
 }
 
+interface WeatherInfoState {
+    isCelsius: boolean
+}
 
-class WeatherInfo extends React.Component<WeatherInfoProps, {}> {
+
+class WeatherInfo extends React.Component<WeatherInfoProps, WeatherInfoState> {
+    constructor(props: Readonly<WeatherInfoProps>){
+        super(props);
+
+        this.state = {
+            isCelsius: true
+        }
+
+        this.onUnitChange = this.onUnitChange.bind(this);
+    }
+    onUnitChange(checked: boolean){
+        this.setState({
+            isCelsius: checked
+        });
+    }
     render(){
         let temp = this.props.temp - 273.15;
+
+        if(!this.state.isCelsius){
+            temp = 9*temp/5 + 32;
+        }
+
         temp = Math.round(temp*100)/100;
-        return <section>
-            <div>
+        return <section className="weather-info">
+            <div className="weather-city">
                 {this.props.city}
             </div>
-            <div>
-                {temp} &deg;C
+            <div className="weather-temperature">
+                {temp} &deg;{this.state.isCelsius?'C':'F'}
             </div>
-            <div>
+            <div className="weather-status">
                 {this.props.status}
             </div>
+            <UnitToggleButton onUnitChange={this.onUnitChange} isCelsius={this.state.isCelsius} />
         </section>;
     }
 }
