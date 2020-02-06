@@ -2,6 +2,7 @@ c-color = hsl(240, 50%, 50%);
 f-color = hsl(160, 50%, 50%);
 
 body
+    font-size: 16px;
     margin: 0;
     background: radial-gradient(ellipse at top left, rgba(209, 234, 255, 0.8) , transparent),
             radial-gradient(ellipse at bottom right, rgba(101, 101, 105, 0.8), transparent);
@@ -10,19 +11,21 @@ body
 main
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center
+    align-items: center;
     height: 100vh;
 
-.weather-info
+.nue-panel
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 auto;
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     background-color: #f3f7fb;
     padding: 15px;
     border-radius: 10px;
     box-shadow: -4px -4px 8px 1px #f2f3ff, 4px 4px 8px 1px #555;
+    margin: 60px 0;
 
 .weather-city
     align-self: start;
@@ -30,11 +33,14 @@ main
 .weather-temperature
     font-size: 4em;
 
+.weather-symbol
+    font-size: 3.4em;
+
 .weather-status
     font-size: 1.6em;
 
 .unit-toggle
-    font-size: 14px;
+    //font-size: 14px;
     border-radius: 1em;
     display: inline-block;
     position: relative;
@@ -104,3 +110,13 @@ main
     left: calc(50% - 2em);
     color: f-color;
     border-color: f-color;
+
+@media (min-width: 480px)
+    body
+        font-size: 14px;
+    
+    .nue-panel
+        max-width: 33%;
+        min-width: 400px;
+    
+

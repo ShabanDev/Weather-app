@@ -6,8 +6,38 @@ import UnitToggleButton from './components/UnitToggleButton';
 
 import './main.styl';
 
+const weatherSymbols = new Map<number, JSX.Element>();
+weatherSymbols.set(800, <span>&#9728;</span>);
+weatherSymbols.set(801, <span>&#x26C5;</span>);
+weatherSymbols.set(802, <span>&#x26C5;</span>);
+weatherSymbols.set(800, <span>&#x26C5;</span>);
+weatherSymbols.set(800, <span>&#x26C5;</span>);
+
+function getWeatherSymbol(code: number) : JSX.Element{
+    if(code > 800 && code <= 804){
+        return <span>&#x26C5;</span>;
+    }
+    else if(code >= 210 && code <= 221){
+        return <span>&#x1F329;</span>
+    }
+    else if(code >= 200 && code < 300){
+        return <span>&#x26C8;</span>
+    }
+    else if(code >= 300 && code < 600){
+        return <span>&#x1F327;</span>
+    }
+    else if(code >= 600 && code < 700){
+        return <span>&#x1F328;</span>
+    }
+    else if(code >= 700 && code < 800){
+        return <span>&#x1F32B;</span>
+    }
+    return <span>&#9728;</span>;
+}
+
 interface IAppState { 
-    weatherData: { 
+    weatherData: {
+        code: number, 
         temp: number,
         status: string,
         city: string
@@ -24,6 +54,7 @@ class AppComponent extends React.Component<{}, IAppState> {
 
         this.state = {
             weatherData: {
+                code: 800,
                 temp: 273.15+22,
                 status: 'Clear',
                 city: 'Manama'
@@ -63,6 +94,7 @@ class AppComponent extends React.Component<{}, IAppState> {
             console.log(value);
             this.setState({
                 weatherData: {
+                    code: value.data.weather[0].id,
                     temp: value.data.main.temp,
                     status: value.data.weather[0].main,
                     city: `${value.data.name}, ${value.data.sys.country}`
@@ -77,7 +109,12 @@ class AppComponent extends React.Component<{}, IAppState> {
 
     render(){
         return <main>
-            <WeatherInfo temp={this.state.weatherData.temp} status={this.state.weatherData.status} city={this.state.weatherData.city} />
+            <WeatherInfo temp={this.state.weatherData.temp} status={this.state.weatherData.status} city={this.state.weatherData.city} code={this.state.weatherData.code} />
+            <section className="nue-panel">
+                <h2>About</h2>
+                <p>This is a project created for the <a href="https://www.freecodecamp.org/" target="_blank">freeCodeCamp</a> web development course.
+                The source code for this project can be found on <a href="https://github.com/GuyNumber9/Weather-app" target="_blank">GitHub</a>.</p>
+            </section>
         </main>;
     }
 }
@@ -85,7 +122,8 @@ class AppComponent extends React.Component<{}, IAppState> {
 interface WeatherInfoProps {
     temp: number,
     status: string,
-    city: string
+    city: string,
+    code: number
 }
 
 interface WeatherInfoState {
@@ -116,9 +154,12 @@ class WeatherInfo extends React.Component<WeatherInfoProps, WeatherInfoState> {
         }
 
         temp = Math.round(temp*100)/100;
-        return <section className="weather-info">
+        return <section className="weather-info nue-panel">
             <div className="weather-city">
                 {this.props.city}
+            </div>
+            <div className="weather-symbol">
+                {getWeatherSymbol(this.props.code)}
             </div>
             <div className="weather-temperature">
                 {temp} &deg;{this.state.isCelsius?'C':'F'}

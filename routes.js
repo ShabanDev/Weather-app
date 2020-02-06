@@ -5,6 +5,7 @@ let express = require('express');
 
 let routes =  Router();
 
+
 routes.use(express.static(path.resolve(__dirname, 'dist')));
 
 routes.get('/', (req, res) => {
