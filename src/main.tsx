@@ -112,7 +112,7 @@ class AppComponent extends React.Component<{}, IAppState> {
             <WeatherInfo temp={this.state.weatherData.temp} status={this.state.weatherData.status} city={this.state.weatherData.city} code={this.state.weatherData.code} />
             <section className="nue-panel">
                 <h2>About</h2>
-                <p>This is a project created for the <a href="https://www.freecodecamp.org/" target="_blank">freeCodeCamp</a> web development course.
+                <p>This is a project created for the <a href="https://www.freecodecamp.org/guynumber9" target="_blank">freeCodeCamp</a> web development course.
                 The source code for this project can be found on <a href="https://github.com/GuyNumber9/Weather-app" target="_blank">GitHub</a>.</p>
             </section>
         </main>;
