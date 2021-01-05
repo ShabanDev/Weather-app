@@ -16,7 +16,7 @@
   "dependencies": {
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
-    "axios": "^0.19.1",
+    "axios": "^0.21.1",
     "express": "^4.17.1",
     "helmet": "^3.21.2",
     "react": "^16.12.0",
