@@ -30,7 +30,7 @@
     "babel-loader": "^8.0.6",
     "css-loader": "^3.4.2",
     "dotenv-safe": "^8.2.0",
-    "html-webpack-plugin": "^3.2.0",
+    "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^0.9.0",
     "pug": "^2.0.4",
     "pug-loader": "^2.4.0",
@@ -38,7 +38,7 @@
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
     "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10",
+    "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.10.1",
     "webpack-merge": "^4.2.2"
   }
